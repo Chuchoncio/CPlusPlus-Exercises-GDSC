@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1643815606 source:c:\users\jmpch\desktop\curso_cpp\lonely_chef\main.cpp
+	<iostream>
+	<cstring>
+

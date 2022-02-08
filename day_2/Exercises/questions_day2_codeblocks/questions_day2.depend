@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1643659165 source:c:\users\jmpch\desktop\curso_cpp\questions_day2\main.cpp
+	<iostream>
+	<string.h>
+
