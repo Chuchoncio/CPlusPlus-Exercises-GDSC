@@ -5,7 +5,7 @@ int main() {
 
     int num, cont = 0;
 
-    cout << "Enter a numero: ";
+    cout << "Enter a number: ";
     cin >> num;
 
     for (int i = 1; i < num; i++)
