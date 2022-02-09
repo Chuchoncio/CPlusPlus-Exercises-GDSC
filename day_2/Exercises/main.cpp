@@ -179,7 +179,7 @@ void question_6() {
 
     cout << "Enter the numbers of inputs you wish: ";
     cin >> n;
-    
+
     name = input();
     longestName = name;
 
@@ -189,6 +189,10 @@ void question_6() {
     }
 
     cout << "The longest name is: " << longestName;
+}
+
+void question_7() {
+    
 }
 
 int main()
@@ -203,7 +207,9 @@ int main()
 
     //question_5();
 
-    question_6();
+    //question_6();
+
+    question_7();
 
     return 0;
 }
