@@ -159,28 +159,33 @@ void question_5()
     cout << cadena;
 }
 
+string input() {
+    string name;
+    cin.sync();
+    cout << "Enter name: ";
+    getline(cin, name);
+    return name;
+}
+
+void ifLongestThenAssign(string& name, string& longestName) {
+    if(longestName < name)
+        longestName = name;
+}
+
 void question_6() {
 
     string name, longestName;
     int n;
 
-    cout << "Enter the number of names do you want to introduce: ";
+    cout << "Enter the numbers of inputs you wish: ";
     cin >> n;
-    cin.sync();
-
-    cout << "Enter name: ";
-    getline(cin, name);
-
-    longestName.assign(name);
+    
+    name = input();
+    longestName = name;
 
     while(--n) {
-
-        cin.sync();
-        if(longestName < name)
-            longestName = name;
-
-        cout << "Enter name: ";
-        getline(cin, name);
+        ifLongestThenAssign(name, longestName);
+        name = input();
     }
 
     cout << "The longest name is: " << longestName;
