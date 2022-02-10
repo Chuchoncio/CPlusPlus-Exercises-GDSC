@@ -160,11 +160,11 @@ void question_5()
 }
 
 string input() {
-    string name;
+    string cad;
     cin.sync();
-    cout << "Enter name: ";
-    getline(cin, name);
-    return name;
+    cout << "Enter string: ";
+    getline(cin, cad);
+    return cad;
 }
 
 void ifLongestThenAssign(string& name, string& longestName) {
@@ -191,25 +191,120 @@ void question_6() {
     cout << "The longest name is: " << longestName;
 }
 
-void question_7() {
-    
+int isCharactersTheSame(string cad) {
+    char firstCar = cad.at(0);
+
+    for (int i = 1; i < cad.length(); i++) {
+        char actualCar = cad.at(i);
+
+        if(firstCar != actualCar) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
-int main()
-{
-    //question_1();
+void question_7() {
 
-    //question_2();
+    string cad;
 
-    //question_3();
+    cad = input();
 
-    //question_4();
+    if(isCharactersTheSame(cad))
+        cout << "Yes";
+    else
+        cout << "No";
+}
 
-    //question_5();
+string concatenateStrings(string cad1, string cad2) {
+    string resCad;
+    resCad.append(cad1);
+    resCad.append(cad2);
+    return resCad;
+}
 
-    //question_6();
+string reverseString(string cad) {
+    string inverString;
+    int sizeCad = cad.length();
+    inverString.clear();
 
-    question_7();
+    for (int i = sizeCad-1; i >= 0; i--) {
+        //inverString.push_back(cad.at(i));
+        inverString[i] = cad[i];
+    }
+    return inverString;
+}
+
+void question_8() {
+
+    string cad1, cad2, fullCad, revString;
+
+    cout << "Enter two strings: " << endl;
+    cad1 = input();
+    cad2 = input();
+
+    fullCad = concatenateStrings(cad1, cad2);
+    revString = reverseString(fullCad);
+
+    cout << revString;
+}
+
+int calcSum(int n1, int n2, int n3) {
+    return n1 + n2 + n3;
+}
+
+void question_9() {
+    
+    int num1, num2, num3, sum;
+
+    cout << "Enter three numbers: ";
+    cin >> num1 >> num2 >> num3;
+
+    sum = calcSum(num1, num2, num3);
+
+    cout << "The sum is: " << sum;
+}
+
+void reverse_dig(int* num1, int* num2) {
+    int numAux = 0, numAux2 = 0;
+
+    while(*num1 > 0) {
+        int remain = *num1 % 10;
+        numAux = (numAux * 10) + remain;
+        *num1 = *num1 / 10;
+    }
+
+    while(*num2 > 0) {
+        int remain = *num2 % 10;
+        numAux2 = (numAux2 * 10) + remain;
+        *num2 = *num2 / 10;
+    }
+
+    *num1 = numAux;
+    *num2 = numAux2;
+}
+
+void swap(int* num1, int* num2) {
+    *num1 += *num2;
+    *num2 = *num1 - *num2;
+    *num1 = *num1 - *num2;
+}
+
+void question_10() {
+
+    int num1, num2;
+
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+
+    reverse_dig(&num1, &num2);
+    swap(&num1, &num2);
+
+    cout << "Num1: " << num1 << "\nNum2: " << num2 << endl;
+}
+
+int main() {
+    question_10();
 
     return 0;
 }
