@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
+#include <math.h>
 using namespace std;
 #define SIZE_ARR 10
 #define TAM_CAD 20
@@ -178,6 +179,116 @@ void question_1() {
     cout << "Maximum element of the array: " << max << endl;
 }
 
+void question_6() {
+
+    int n = 6;
+    int arr[n];
+
+    fillArray(arr, n);
+    displayArray(arr, n);
+}
+
+int sumElemsOfArray(int* arr, int arrSize) {
+
+    int sum = 0;
+
+    for (int i = 0; i < arrSize; i++)
+    {
+        sum += arr[i];
+    }
+
+    return sum;
+}
+
+void question_7() {
+
+    int n = 10, sum;
+    int arr[n];
+
+    fillArray(arr, n);
+    displayArray(arr, n);
+    sum = sumElemsOfArray(arr, n);
+    cout << "The sum of all elements in the array is: " << sum << endl;
+}
+
+void calculateAndDisplayEvensAndOddsArray(int* arr, int arrSize) {
+
+    int countOdd = 0, countEven = 0;
+
+    for (int i = 0; i < arrSize; i++)
+    {
+        if(arr[i] % 2 == 0){
+            countEven++;
+        } else {
+            countOdd++;
+        }
+    }
+
+    cout << "The number of odd elements is: " << countOdd << endl;
+    cout << "The number of even elements is: " << countEven << endl;
+}
+
+void question_8() {
+
+    int n = 10;
+    int arr[n];
+
+    fillArray(arr, n);
+    displayArray(arr, n);
+    calculateAndDisplayEvensAndOddsArray(arr, n);
+}
+
+void printReverseArray(int* arr, int arrSize) {
+
+    for (int i = arrSize-1; i >= 0; i--)
+    {
+        cout << "[" << arr[i] << "] ";
+    }
+    cout << "\n";
+}
+
+void question_9() {
+
+    int n = 10;
+    int arr[n];
+
+    fillArray(arr, n);
+    displayArray(arr, n);
+    printReverseArray(arr, n);
+}
+
+// I implemented pow like this because the original
+//  pow function from math.h library is useless
+//  using double or float values to return when i need
+//  an integer
+int _pow(int base, int exp)
+{
+    return exp == 0 ? 1 : base * _pow(base, exp - 1);
+}
+
+int convertFive(int num) {
+    int numRes = 0, i = 0, firstCalc = 0;
+
+    while(num > 0) {
+        int remain = num % 10;
+        if(remain == 0)
+	        remain = 5;
+        numRes = (_pow(10, i) * remain) + numRes;
+        num = num / 10;
+        i++;
+    }
+
+    return numRes;
+}
+
+void question_10() {
+
+    int n = 1354;
+    cout << n << endl;
+    n = convertFive(n);
+    cout << n << endl;
+}
+
 int main()
 {
     //question_1();
@@ -186,9 +297,19 @@ int main()
 
     //question_3();
 
-    question_4();
+    //question_4();
 
     //question_5();
+
+    //question_6();
+
+    //question_7();
+
+    //question_8();
+
+    //question_9();
+
+    question_10();
 
     return 0;
 }
