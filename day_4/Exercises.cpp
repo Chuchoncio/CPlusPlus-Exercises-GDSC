@@ -14,7 +14,6 @@ void fillArray(int* arr, int sizeArr) {
     }
 }
 
-
 void displayArray(int* arr, int sizeArr) {
     int i;
 
