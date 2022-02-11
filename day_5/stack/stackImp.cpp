@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int stack[5];
+int stack[7];
 int tamStack = 5;
 int topStack = -1;
 
