@@ -2,7 +2,7 @@
 using namespace std;
 
 int stack[7];
-int tamStack = 5;
+int tamStack = 7;
 int topStack = -1;
 
 void push(int data) {
