@@ -308,7 +308,7 @@ int main()
 
     //question_9();
 
-    question_10();
+    //question_10();
 
     return 0;
 }

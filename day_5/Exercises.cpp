@@ -1,7 +1,9 @@
 #include <iostream>
+#include "stack\stackImp.cpp"
+#include <math.h>
+#include <stdio.h>
 using namespace std;
 
-#include "stack\stackImp.cpp"
 
 void printNumR(int num)
 {
@@ -107,13 +109,98 @@ void question_3() {
     display();
 }
 
+void reverse_dig(int* num1) {
+    int numAux = 0;
+
+    while(*num1 > 0) {
+        int remain = *num1 % 10;
+        numAux = (numAux * 10) + remain;
+        *num1 = *num1 / 10;
+    }
+
+    *num1 = numAux;
+}
+
+void power_reverse(int num, int reverseNum) {
+    long res = pow(num, reverseNum);
+
+    printf("res (%%E) - %E: \n", res);
+}
+
+void question_4() {
+
+    int num, reverseNum;
+
+    cout << "Enter a number: ";
+    cin >> num;
+
+    reverseNum = num;
+
+    reverse_dig(&reverseNum);
+    power_reverse(num, reverseNum);  
+}
+
+string reverseString(string cad) {
+    string res;
+
+    res = "";
+
+    for(char ch : cad) {
+        push(ch);
+    }
+
+    while(!isEmpty())
+    {
+        res += peak();
+        pop();
+    }
+
+    return res;
+}
+
+void question_5() {
+
+    string cad, cadRes;
+
+    cout << "Enter a string: ";
+    getline(cin, cad);
+
+    cadRes = reverseString(cad);
+
+    cout << cadRes << endl;
+}
+
+void fillStack() {
+    for (int i = 0; i < 5; i++) {
+        push(rand() % 100);
+    }
+}
+
+void sortStack() {
+    int aux;
+
+    
+}
+
+void question_6() {
+
+    fillStack();
+    sortStack();
+}
+
 int main()
 {
     //question_1();
 
     //question_2();
 
-    question_3();
+    //question_3();
+
+    //question_4();
+
+    //question_5();
+
+    question_6();
 
     return 0;
 }

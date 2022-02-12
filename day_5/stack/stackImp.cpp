@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int stack[7];
-int tamStack = 7;
+int stack[100];
+int tamStack = 100;
 int topStack = -1;
 
 void push(int data) {
