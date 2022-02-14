@@ -1,9 +1,11 @@
 #include <iostream>
 #include "stack\stackImp.cpp"
+#include "stack\doubleStackImp.cpp"
 #include <math.h>
 #include <stdio.h>
-using namespace std;
+#include <list>
 
+using namespace std;
 
 void printNumR(int num)
 {
@@ -188,6 +190,73 @@ void question_6() {
     sortStack();
 }
 
+int factorial(int n) {
+    if(n == 0) {
+        return 1;
+    }
+    return n * factorial(n-1);
+}
+
+int foundLastNonZeroDigit(int num) {
+    int lastNZDigit = 0;
+    while(lastNZDigit == 0) {
+        lastNZDigit = num % 10;
+        num = num / 10;
+    }
+    return lastNZDigit < 0 ? lastNZDigit*(-1) : lastNZDigit;
+}
+
+void question_7() {
+
+    int fact, n, nonZeroDigit;
+
+    cin >> n;
+    fact = factorial(n);
+    cout << fact << endl;
+    nonZeroDigit = foundLastNonZeroDigit(fact);
+
+    cout << nonZeroDigit << endl;
+}
+
+list<int> nFibonacci(int n) {
+    list<int> fibSerie = {};
+
+    int fibo = 0, i = 1;
+
+    while(fibo <= n)
+    {
+        fibSerie.push_back(fibo);
+        i += fibo;
+        fibo = i-fibo;
+    }
+    return fibSerie;
+}
+
+void displayList(list<int> list) {
+    for(int x : list) {
+        cout << x << " ";
+    }
+}
+
+void question_8() {
+    int n;
+    list<int> fibSerie = {};
+
+    cin >> n;
+    fibSerie = nFibonacci(n);
+    printf("Serie Fibonacci: \n");
+    displayList(fibSerie);   
+}
+
+void question_9(){
+    push1(2);
+    push1(3);
+    push2(4);
+    cout << pop1() << " ";
+    cout << pop2() << " ";
+    cout << pop2() << " ";
+}
+
 int main()
 {
     //question_1();
@@ -200,7 +269,13 @@ int main()
 
     //question_5();
 
-    question_6();
+    //TODO question_6();
+
+    //question_7();
+
+    //question_8();
+
+    question_9();
 
     return 0;
 }
