@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// Question 2 //
 int queue[100];
 int n = 100;
 int front = -1;
@@ -64,7 +65,7 @@ void Peek() {
     if(front == -1 && rear == -1) {
         cout << "There is no peak element in the queue" << endl;
     } else {
-        cout << "Peak element is: " << queue[front];
+        cout << "Peak element is: " << queue[front] << endl;
     }
 }
 
@@ -75,18 +76,4 @@ void Bottom() {
         cout << "Bottom element is: " << queue[rear];
     }
 }
-
-int main() {
-
-    Enqueue(4);
-    Enqueue(5);
-    Enqueue(8);
-    Enqueue(67);
-    Display();
-    Dequeue();
-    Dequeue();
-    Peek();
-    Bottom();
-
-    return 0;
-}
+// Question 2 //
