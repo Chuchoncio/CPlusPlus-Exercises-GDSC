@@ -57,24 +57,8 @@ Node* insertAtEnd(Node* head, int data) {
     return head;
 }
 
-void printList(Node* node) {
-    while(node != NULL) {
-        cout << node->data << endl;
-        node = node->next; 
-    }
-}
-
-int main() {
-
-    Node* head = new Node(5);
-
-    insertNode(head, 1, 5);
-    insertNode(head, 2, 2);
-    insertNode(head, 3, 3);
-    insertNode(head, 4, 8);
-    insertNode(head, 5, 9);
-
-    printList(head);
-
-    system("pause");
+void push(Node** head_ref, int new_data) {
+    Node* new_node = new Node(new_data);
+    new_node->next = *head_ref;
+    *head_ref = new_node;
 }
