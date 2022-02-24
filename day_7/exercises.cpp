@@ -1,5 +1,6 @@
 #include <iostream>
 #include "LinkedList.cpp"
+#include "doubleLinkedList.cpp"
 using namespace std;
 
 void printList(Node *node)
@@ -167,7 +168,7 @@ int isCircular(Node *list)
                 return 1;
         }
         return 0;
-    }   
+    }
 }
 
 void question_5()
@@ -176,20 +177,22 @@ void question_5()
     int pos = 4;
     insertVariousNodes(head);
     printList(head);
-    //head = makeListCircular(head);
-    //printCircularList(head);
-    if(isCircular(head))
+    // head = makeListCircular(head);
+    // printCircularList(head);
+    if (isCircular(head))
         cout << "The list is circular" << endl;
     else
         cout << "The list is NOT circular" << endl;
 }
 
-Node* reverseList(Node* head) {
-    Node* curr = head,
-        * next = NULL,
-        * prev = NULL;
-    
-    while(curr != NULL) {
+Node *reverseList(Node *head)
+{
+    Node *curr = head,
+         *next = NULL,
+         *prev = NULL;
+
+    while (curr != NULL)
+    {
         next = curr->next;
         curr->next = prev;
         prev = curr;
@@ -201,7 +204,8 @@ Node* reverseList(Node* head) {
     return head;
 }
 
-void question_6() {
+void question_6()
+{
     Node *head = new Node(1);
     insertVariousNodes(head);
     printList(head);
@@ -209,20 +213,24 @@ void question_6() {
     printList(head);
 }
 
-Node *partition(Node *&head, Node *&rear) {
+Node *partition(Node *&head, Node *&rear)
+{
     Node *temp, *output = head;
     if (head == rear)
         return head;
     int pivot = head->data;
     Node **curr = &(head->next);
-   while (*curr != rear->next) {
-        if ((*curr)->data < pivot) {
+    while (*curr != rear->next)
+    {
+        if ((*curr)->data < pivot)
+        {
             temp = *curr;
-            if (*curr == rear) {
-                Node *temp_rear=output;
-                while(temp_rear->next!=temp)
-                    temp_rear=temp_rear->next;
-                rear =temp_rear;
+            if (*curr == rear)
+            {
+                Node *temp_rear = output;
+                while (temp_rear->next != temp)
+                    temp_rear = temp_rear->next;
+                rear = temp_rear;
             }
             *curr = (*curr)->next;
             push(&head, temp->data);
@@ -236,10 +244,12 @@ Node *partition(Node *&head, Node *&rear) {
     return output;
 }
 
-void _quickSort(Node *&head, Node *&rear) {
+void _quickSort(Node *&head, Node *&rear)
+{
     Node *middle = partition(head, rear);
 
-    if (middle != head) {
+    if (middle != head)
+    {
         Node *curr = head;
         while (curr->next != middle)
             curr = curr->next;
@@ -250,7 +260,8 @@ void _quickSort(Node *&head, Node *&rear) {
         _quickSort(middle->next, rear);
 }
 
-void quickSort(struct Node **headRef) {
+void quickSort(struct Node **headRef)
+{
     if ((*headRef)->next == nullptr)
         return;
     Node *tail = *headRef;
@@ -260,12 +271,82 @@ void quickSort(struct Node **headRef) {
     _quickSort(*headRef, tail);
 }
 
-void question_7() {
+void question_7()
+{
     Node *head = new Node(1);
     insertVariousNodes(head);
     printList(head);
     quickSort(&head);
     printList(head);
+}
+
+DoublyLinkedListNode *sortedInsert(DoublyLinkedListNode *llist, int data)
+{
+    DoublyLinkedListNode *head = llist;
+    DoublyLinkedListNode *temp = new DoublyLinkedListNode(data);
+
+    if (head == NULL || head->next == NULL)
+        return llist;
+    else if (head->data <= data || head->next->data <= data)
+    {
+        while (head->next != NULL && head->next->data <= data)
+            head = head->next;
+
+        temp->prev = head;
+        temp->next = head->next;
+        if (head->next != NULL)
+            head->next->prev = temp;
+        head->next = temp;
+
+        while (head != llist)
+            head = head->prev;
+    }
+    else
+    {
+        temp->next = head;
+        head->prev = temp;
+        head = temp;
+    }
+
+    return head;
+}
+
+void question_9()
+{
+    ofstream myfile;
+    myfile.open("output.txt");
+
+    int t;
+    cin >> t;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        DoublyLinkedList* llist = new DoublyLinkedList();
+
+        int llist_count;
+        cin >> llist_count;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        for (int i = 0; i < llist_count; i++) {
+            int llist_item;
+            cin >> llist_item;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            llist->insert_node(llist_item);
+        }
+
+        int data;
+        cin >> data;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        DoublyLinkedListNode* llist1 = sortedInsert(llist->head, data);
+
+        print_doubly_linked_list(llist1, myfile, " ");
+
+        free_doubly_linked_list(llist1);
+    }
+
+    myfile.close();
 }
 
 int main()
@@ -274,9 +355,10 @@ int main()
     // question_2();
     // question_3();
     // question_4();
-    //question_5();
-    //question_6();
-    question_7();
+    // question_5();
+    // question_6();
+    // question_7();
+    //question_9();
 
     system("pause");
 }
