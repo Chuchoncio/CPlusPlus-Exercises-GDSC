@@ -24,6 +24,7 @@ void insertVariousNodes(Node *node)
     insertNode(node, 3, 3);
     insertNode(node, 4, 8);
     insertNode(node, 5, 9);
+    insertNode(node, 6, 11);
 }
 
 void question_1()
@@ -280,6 +281,46 @@ void question_7()
     printList(head);
 }
 
+Node* reArrangeList(Node* head) {
+    Node* temp,
+        * end;
+    int count;  
+
+    if(!head) {
+        return head;
+    }
+
+    end = head;
+    count = 0;
+    while(end->next != nullptr) {
+        end = end->next;
+        count++;
+    }
+
+    temp = head;
+    count = count%2 == 0? count/2 : (count/2)+1;
+
+    while(count) {
+        end->next = temp->next;
+        temp->next = temp->next->next;
+        end->next->next = NULL;
+
+        end = end->next;
+        temp = temp->next;
+        count--;
+    }
+
+    return head;
+}
+
+void question_8() {
+    Node *head = new Node(1);
+    insertVariousNodes(head);
+    printList(head);
+    head = reArrangeList(head);
+    printList(head);
+}
+
 DoublyLinkedListNode *sortedInsert(DoublyLinkedListNode *llist, int data)
 {
     DoublyLinkedListNode *head = llist;
@@ -358,6 +399,7 @@ int main()
     // question_5();
     // question_6();
     // question_7();
+    //question_8();
     //question_9();
 
     system("pause");
